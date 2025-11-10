@@ -1,0 +1,196 @@
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { MessageSquare, Send, Bot, User } from "lucide-react";
+
+interface Message {
+  id: string;
+  text: string;
+  sender: "user" | "bot";
+  timestamp: Date;
+}
+
+const Support = () => {
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      id: "1",
+      text: "Olá! Sou seu assistente de fitness com IA. Como posso ajudá-lo hoje?",
+      sender: "bot",
+      timestamp: new Date(),
+    },
+  ]);
+  const [inputMessage, setInputMessage] = useState("");
+
+  const handleSendMessage = () => {
+    if (!inputMessage.trim()) return;
+
+    const newUserMessage: Message = {
+      id: Date.now().toString(),
+      text: inputMessage,
+      sender: "user",
+      timestamp: new Date(),
+    };
+
+    setMessages((prev) => [...prev, newUserMessage]);
+    setInputMessage("");
+
+    // Simulate bot response
+    setTimeout(() => {
+      const botResponse: Message = {
+        id: (Date.now() + 1).toString(),
+        text: "Obrigado pela sua mensagem! Esta funcionalidade de IA será integrada em breve para responder suas dúvidas sobre treinos, nutrição e muito mais.",
+        sender: "bot",
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, botResponse]);
+    }, 1000);
+  };
+
+  const quickQuestions = [
+    "Como calcular minhas calorias?",
+    "Qual o melhor treino para iniciantes?",
+    "Como ganhar massa muscular?",
+    "Dicas para dieta low carb",
+  ];
+
+  return (
+    <div className="container py-12 min-h-screen">
+      <div className="max-w-4xl mx-auto space-y-8">
+        <div className="text-center space-y-4">
+          <h1 className="text-4xl md:text-5xl font-bold">Suporte 24h por IA</h1>
+          <p className="text-xl text-muted-foreground">
+            Tire suas dúvidas sobre treinos, nutrição e alcance seus objetivos com ajuda da inteligência artificial
+          </p>
+        </div>
+
+        <Card className="gradient-card shadow-card">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <MessageSquare className="h-6 w-6 text-primary" />
+              Chat com Assistente IA
+            </CardTitle>
+            <CardDescription>
+              Pergunte qualquer coisa sobre fitness, nutrição e saúde
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {/* Messages Area */}
+            <div className="h-96 overflow-y-auto space-y-4 p-4 bg-muted/30 rounded-lg">
+              {messages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex items-start gap-3 ${
+                    message.sender === "user" ? "flex-row-reverse" : ""
+                  }`}
+                >
+                  <div
+                    className={`flex h-8 w-8 items-center justify-center rounded-full ${
+                      message.sender === "user"
+                        ? "bg-primary"
+                        : "bg-muted"
+                    }`}
+                  >
+                    {message.sender === "user" ? (
+                      <User className="h-4 w-4 text-primary-foreground" />
+                    ) : (
+                      <Bot className="h-4 w-4 text-muted-foreground" />
+                    )}
+                  </div>
+                  <div
+                    className={`flex-1 max-w-[80%] rounded-lg p-3 ${
+                      message.sender === "user"
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-background border border-border"
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <p
+                      className={`text-xs mt-1 ${
+                        message.sender === "user"
+                          ? "text-primary-foreground/70"
+                          : "text-muted-foreground"
+                      }`}
+                    >
+                      {message.timestamp.toLocaleTimeString()}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Quick Questions */}
+            <div className="space-y-2">
+              <p className="text-sm font-semibold">Perguntas Rápidas:</p>
+              <div className="flex flex-wrap gap-2">
+                {quickQuestions.map((question, index) => (
+                  <Button
+                    key={index}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setInputMessage(question)}
+                    className="text-xs"
+                  >
+                    {question}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
+            {/* Input Area */}
+            <div className="flex gap-2">
+              <Input
+                value={inputMessage}
+                onChange={(e) => setInputMessage(e.target.value)}
+                onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+                placeholder="Digite sua mensagem..."
+                className="flex-1"
+              />
+              <Button
+                onClick={handleSendMessage}
+                className="gradient-primary shadow-primary"
+              >
+                <Send className="h-4 w-4" />
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Info Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Card className="bg-primary/5 border-primary/20">
+            <CardContent className="p-6 text-center">
+              <MessageSquare className="h-8 w-8 text-primary mx-auto mb-2" />
+              <h3 className="font-semibold mb-1">Respostas Instantâneas</h3>
+              <p className="text-sm text-muted-foreground">
+                Tire suas dúvidas a qualquer hora do dia
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-primary/5 border-primary/20">
+            <CardContent className="p-6 text-center">
+              <Bot className="h-8 w-8 text-primary mx-auto mb-2" />
+              <h3 className="font-semibold mb-1">IA Especializada</h3>
+              <p className="text-sm text-muted-foreground">
+                Treinada em fitness e nutrição
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-primary/5 border-primary/20">
+            <CardContent className="p-6 text-center">
+              <MessageSquare className="h-8 w-8 text-primary mx-auto mb-2" />
+              <h3 className="font-semibold mb-1">Suporte Contínuo</h3>
+              <p className="text-sm text-muted-foreground">
+                Acompanhamento durante toda sua jornada
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Support;

@@ -2,9 +2,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Apple, Clock, TrendingUp, Leaf } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import healthyFoodImage from "@/assets/healthy-food.jpg";
+import mediterraneanImage from "@/assets/diet-mediterranean.jpg";
+import lowcarbImage from "@/assets/diet-lowcarb.jpg";
+import proteinImage from "@/assets/diet-protein.jpg";
+import veganImage from "@/assets/diet-vegan.jpg";
+import fastingImage from "@/assets/diet-fasting.jpg";
+import flexibleImage from "@/assets/diet-flexible.jpg";
 
 const Diets = () => {
+  const { toast } = useToast();
+  
   const diets = [
     {
       title: "Dieta Balanceada",
@@ -12,6 +21,7 @@ const Diets = () => {
       calories: "1800 kcal/dia",
       description: "Plano alimentar equilibrado com todos os macronutrientes. Ideal para manutenção de peso.",
       features: ["40% Carboidratos", "30% Proteínas", "30% Gorduras", "5 Refeições"],
+      image: flexibleImage,
     },
     {
       title: "Low Carb",
@@ -19,6 +29,7 @@ const Diets = () => {
       calories: "1500 kcal/dia",
       description: "Redução de carboidratos para acelerar a queima de gordura corporal.",
       features: ["20% Carboidratos", "40% Proteínas", "40% Gorduras", "4 Refeições"],
+      image: lowcarbImage,
     },
     {
       title: "Dieta Mediterrânea",
@@ -26,6 +37,7 @@ const Diets = () => {
       calories: "2000 kcal/dia",
       description: "Baseada em alimentos frescos, azeite e peixes. Ótima para saúde cardiovascular.",
       features: ["Azeite Extra Virgem", "Peixes", "Vegetais Frescos", "Frutas"],
+      image: mediterraneanImage,
     },
     {
       title: "Dieta Proteica",
@@ -33,6 +45,7 @@ const Diets = () => {
       calories: "2200 kcal/dia",
       description: "Alta ingestão de proteínas para ganho de massa muscular.",
       features: ["45% Proteínas", "30% Carboidratos", "25% Gorduras", "6 Refeições"],
+      image: proteinImage,
     },
     {
       title: "Vegetariana",
@@ -40,6 +53,7 @@ const Diets = () => {
       calories: "1800 kcal/dia",
       description: "Dieta baseada em plantas, rica em nutrientes e fibras.",
       features: ["Legumes", "Grãos Integrais", "Ovos", "Laticínios"],
+      image: veganImage,
     },
     {
       title: "Flexível (IIFYM)",
@@ -47,8 +61,16 @@ const Diets = () => {
       calories: "Variável",
       description: "Atinja suas macros comendo alimentos que você gosta.",
       features: ["Sem Restrições", "Foco em Macros", "Flexibilidade", "Sustentável"],
+      image: fastingImage,
     },
   ];
+
+  const handleViewPlan = (dietTitle: string) => {
+    toast({
+      title: "Plano de Dieta! 🥗",
+      description: `Você selecionou: ${dietTitle}. Em breve você terá acesso ao plano completo!`,
+    });
+  };
 
   const getTypeColor = (type: string) => {
     switch (type) {
@@ -87,15 +109,24 @@ const Diets = () => {
       <section className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {diets.map((diet, index) => (
-            <Card key={index} className="gradient-card shadow-card hover:shadow-primary transition-smooth">
+            <Card key={index} className="gradient-card shadow-card hover:shadow-primary transition-smooth overflow-hidden">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={diet.image} 
+                  alt={diet.title}
+                  className="w-full h-full object-cover transition-transform hover:scale-110 duration-500"
+                />
+                <div className="absolute top-2 right-2">
+                  <Badge className={getTypeColor(diet.type)}>
+                    {diet.type}
+                  </Badge>
+                </div>
+              </div>
               <CardHeader>
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
                     <Apple className="h-6 w-6 text-primary" />
                   </div>
-                  <Badge className={getTypeColor(diet.type)}>
-                    {diet.type}
-                  </Badge>
                 </div>
                 <CardTitle className="text-xl">{diet.title}</CardTitle>
                 <CardDescription>{diet.description}</CardDescription>
@@ -117,7 +148,10 @@ const Diets = () => {
                   </div>
                 </div>
 
-                <Button className="w-full gradient-primary shadow-primary">
+                <Button 
+                  className="w-full gradient-primary shadow-primary"
+                  onClick={() => handleViewPlan(diet.title)}
+                >
                   <Leaf className="h-4 w-4 mr-2" />
                   Ver Plano Completo
                 </Button>

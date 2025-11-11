@@ -2,9 +2,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dumbbell, Clock, TrendingUp, Zap } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import workoutImage from "@/assets/workout-gym.jpg";
+import fullbodyImage from "@/assets/workout-fullbody.jpg";
+import hiitImage from "@/assets/workout-hiit.jpg";
+import upperImage from "@/assets/workout-upper.jpg";
+import coreImage from "@/assets/workout-core.jpg";
+import legsImage from "@/assets/workout-legs.jpg";
+import mobilityImage from "@/assets/workout-mobility.jpg";
 
 const Workouts = () => {
+  const { toast } = useToast();
+  
   const workouts = [
     {
       title: "Treino Full Body Iniciante",
@@ -13,6 +22,7 @@ const Workouts = () => {
       calories: "300 kcal",
       description: "Treino completo para trabalhar todos os grupos musculares. Perfeito para quem está começando.",
       exercises: ["Agachamento", "Flexão", "Prancha", "Remada"],
+      image: fullbodyImage,
     },
     {
       title: "HIIT Intenso",
@@ -21,6 +31,7 @@ const Workouts = () => {
       calories: "450 kcal",
       description: "Treino de alta intensidade para queima máxima de calorias e condicionamento cardiovascular.",
       exercises: ["Burpees", "Mountain Climbers", "Jump Squats", "Sprint"],
+      image: hiitImage,
     },
     {
       title: "Hipertrofia Membros Superiores",
@@ -29,6 +40,7 @@ const Workouts = () => {
       calories: "350 kcal",
       description: "Foco em ganho de massa muscular para peito, costas, ombros e braços.",
       exercises: ["Supino", "Pulldown", "Rosca Direta", "Desenvolvimento"],
+      image: upperImage,
     },
     {
       title: "Core & Abdômen",
@@ -37,6 +49,7 @@ const Workouts = () => {
       calories: "200 kcal",
       description: "Fortalecimento do core e definição abdominal com exercícios funcionais.",
       exercises: ["Prancha", "Russian Twist", "Leg Raises", "Bicycle Crunch"],
+      image: coreImage,
     },
     {
       title: "Treino de Pernas",
@@ -45,6 +58,7 @@ const Workouts = () => {
       calories: "400 kcal",
       description: "Desenvolvimento completo de membros inferiores e glúteos.",
       exercises: ["Agachamento Livre", "Leg Press", "Stiff", "Panturrilha"],
+      image: legsImage,
     },
     {
       title: "Mobilidade & Alongamento",
@@ -53,8 +67,16 @@ const Workouts = () => {
       calories: "150 kcal",
       description: "Melhore sua flexibilidade e previna lesões com rotina completa de alongamento.",
       exercises: ["Yoga Flow", "Alongamento Dinâmico", "Foam Rolling", "Respiração"],
+      image: mobilityImage,
     },
   ];
+
+  const handleStartWorkout = (workoutTitle: string) => {
+    toast({
+      title: "Treino Iniciado! 💪",
+      description: `Você começou: ${workoutTitle}. Boa sorte!`,
+    });
+  };
 
   const getLevelColor = (level: string) => {
     switch (level) {
@@ -91,15 +113,24 @@ const Workouts = () => {
       <section className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {workouts.map((workout, index) => (
-            <Card key={index} className="gradient-card shadow-card hover:shadow-primary transition-smooth">
+            <Card key={index} className="gradient-card shadow-card hover:shadow-primary transition-smooth overflow-hidden">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={workout.image} 
+                  alt={workout.title}
+                  className="w-full h-full object-cover transition-transform hover:scale-110 duration-500"
+                />
+                <div className="absolute top-2 right-2">
+                  <Badge className={getLevelColor(workout.level)}>
+                    {workout.level}
+                  </Badge>
+                </div>
+              </div>
               <CardHeader>
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
                     <Dumbbell className="h-6 w-6 text-primary" />
                   </div>
-                  <Badge className={getLevelColor(workout.level)}>
-                    {workout.level}
-                  </Badge>
                 </div>
                 <CardTitle className="text-xl">{workout.title}</CardTitle>
                 <CardDescription>{workout.description}</CardDescription>
@@ -127,7 +158,10 @@ const Workouts = () => {
                   </div>
                 </div>
 
-                <Button className="w-full gradient-primary shadow-primary">
+                <Button 
+                  className="w-full gradient-primary shadow-primary"
+                  onClick={() => handleStartWorkout(workout.title)}
+                >
                   <TrendingUp className="h-4 w-4 mr-2" />
                   Começar Treino
                 </Button>

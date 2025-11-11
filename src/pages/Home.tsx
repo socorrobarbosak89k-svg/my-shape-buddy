@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Camera, Dumbbell, MessageSquare, TrendingUp, Zap, Heart } from "lucide-react";
@@ -55,11 +56,11 @@ const Home = () => {
               Revolucione sua jornada fitness com IA, treinos personalizados e suporte 24 horas
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
-              <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-glow text-lg px-8">
-                Começar Agora - Grátis
+              <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 shadow-glow text-lg px-8">
+                <Link to="/calculadora">Começar Agora - Grátis</Link>
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8">
-                Ver Como Funciona
+              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8">
+                <Link to="/treinos">Ver Como Funciona</Link>
               </Button>
             </div>
           </div>
@@ -149,8 +150,8 @@ const Home = () => {
             <p className="text-xl text-white/90 max-w-2xl mx-auto">
               Junte-se a milhares de pessoas que já estão transformando seus corpos com nossa plataforma
             </p>
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 mt-6">
-              Começar Gratuitamente
+            <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 mt-6">
+              <Link to="/calculadora">Começar Gratuitamente</Link>
             </Button>
           </CardContent>
         </Card>

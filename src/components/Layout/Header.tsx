@@ -43,11 +43,11 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center space-x-4">
-          <Button variant="outline" className="hidden sm:inline-flex">
-            Login
+          <Button asChild variant="outline" className="hidden sm:inline-flex">
+            <Link to="/suporte">Login</Link>
           </Button>
-          <Button className="hidden sm:inline-flex gradient-primary shadow-primary">
-            Começar Agora
+          <Button asChild className="hidden sm:inline-flex gradient-primary shadow-primary">
+            <Link to="/calculadora">Começar Agora</Link>
           </Button>
 
           {/* Mobile Menu Button */}
@@ -85,8 +85,12 @@ const Header = () => {
               </Link>
             ))}
             <div className="flex flex-col space-y-2 pt-4 border-t border-border">
-              <Button variant="outline">Login</Button>
-              <Button className="gradient-primary shadow-primary">Começar Agora</Button>
+              <Button asChild variant="outline">
+                <Link to="/suporte">Login</Link>
+              </Button>
+              <Button asChild className="gradient-primary shadow-primary">
+                <Link to="/calculadora">Começar Agora</Link>
+              </Button>
             </div>
           </nav>
         </div>

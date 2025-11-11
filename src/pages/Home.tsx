@@ -96,8 +96,32 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Stats Section */}
+      <section className="bg-muted/50 py-16">
+        <div className="container">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="space-y-2">
+              <p className="text-4xl md:text-5xl font-bold text-primary">10k+</p>
+              <p className="text-muted-foreground">Usuários Ativos</p>
+            </div>
+            <div className="space-y-2">
+              <p className="text-4xl md:text-5xl font-bold text-primary">500+</p>
+              <p className="text-muted-foreground">Treinos Disponíveis</p>
+            </div>
+            <div className="space-y-2">
+              <p className="text-4xl md:text-5xl font-bold text-primary">95%</p>
+              <p className="text-muted-foreground">Taxa de Satisfação</p>
+            </div>
+            <div className="space-y-2">
+              <p className="text-4xl md:text-5xl font-bold text-primary">24/7</p>
+              <p className="text-muted-foreground">Suporte por IA</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* How It Works */}
-      <section className="bg-muted/50 py-24">
+      <section className="py-24">
         <div className="container">
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-3xl md:text-5xl font-bold">Como Funciona</h2>
@@ -107,7 +131,7 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center space-y-4">
+            <Card className="gradient-card shadow-card text-center p-8 space-y-4 border-border">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground text-2xl font-bold mx-auto shadow-primary">
                 1
               </div>
@@ -115,9 +139,9 @@ const Home = () => {
               <p className="text-muted-foreground">
                 Crie sua conta e conte-nos sobre seus objetivos e preferências
               </p>
-            </div>
+            </Card>
 
-            <div className="text-center space-y-4">
+            <Card className="gradient-card shadow-card text-center p-8 space-y-4 border-border">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground text-2xl font-bold mx-auto shadow-primary">
                 2
               </div>
@@ -125,9 +149,9 @@ const Home = () => {
               <p className="text-muted-foreground">
                 Receba seu plano personalizado de treinos e dieta sob medida
               </p>
-            </div>
+            </Card>
 
-            <div className="text-center space-y-4">
+            <Card className="gradient-card shadow-card text-center p-8 space-y-4 border-border">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground text-2xl font-bold mx-auto shadow-primary">
                 3
               </div>
@@ -135,7 +159,87 @@ const Home = () => {
               <p className="text-muted-foreground">
                 Acompanhe seu progresso e alcance o shape inexplicável
               </p>
-            </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="bg-muted/50 py-24">
+        <div className="container">
+          <div className="text-center space-y-4 mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold">O Que Nossos Usuários Dizem</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Histórias reais de transformação
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="gradient-card shadow-card border-border">
+              <CardContent className="p-6 space-y-4">
+                <div className="flex gap-1 text-yellow-500">
+                  {"★★★★★".split("").map((star, i) => (
+                    <span key={i}>{star}</span>
+                  ))}
+                </div>
+                <p className="text-muted-foreground italic">
+                  "Perdi 15kg em 3 meses! O app é incrível e o suporte por IA me ajudou muito nas dúvidas."
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary">
+                    M
+                  </div>
+                  <div>
+                    <p className="font-semibold">Maria Silva</p>
+                    <p className="text-sm text-muted-foreground">Perdeu 15kg</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="gradient-card shadow-card border-border">
+              <CardContent className="p-6 space-y-4">
+                <div className="flex gap-1 text-yellow-500">
+                  {"★★★★★".split("").map((star, i) => (
+                    <span key={i}>{star}</span>
+                  ))}
+                </div>
+                <p className="text-muted-foreground italic">
+                  "Ganhei massa muscular de forma consistente. Os treinos são bem estruturados!"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary">
+                    J
+                  </div>
+                  <div>
+                    <p className="font-semibold">João Santos</p>
+                    <p className="text-sm text-muted-foreground">Ganhou 8kg de massa</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="gradient-card shadow-card border-border">
+              <CardContent className="p-6 space-y-4">
+                <div className="flex gap-1 text-yellow-500">
+                  {"★★★★★".split("").map((star, i) => (
+                    <span key={i}>{star}</span>
+                  ))}
+                </div>
+                <p className="text-muted-foreground italic">
+                  "Finalmente consegui criar uma rotina saudável. O app mudou minha vida!"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary">
+                    A
+                  </div>
+                  <div>
+                    <p className="font-semibold">Ana Costa</p>
+                    <p className="text-sm text-muted-foreground">Melhorou saúde geral</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>

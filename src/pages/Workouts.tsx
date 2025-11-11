@@ -1,8 +1,8 @@
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dumbbell, Clock, TrendingUp, Zap } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 import workoutImage from "@/assets/workout-gym.jpg";
 import fullbodyImage from "@/assets/workout-fullbody.jpg";
 import hiitImage from "@/assets/workout-hiit.jpg";
@@ -12,10 +12,9 @@ import legsImage from "@/assets/workout-legs.jpg";
 import mobilityImage from "@/assets/workout-mobility.jpg";
 
 const Workouts = () => {
-  const { toast } = useToast();
-  
   const workouts = [
     {
+      id: "fullbody-iniciante",
       title: "Treino Full Body Iniciante",
       duration: "45 min",
       level: "Iniciante",
@@ -25,6 +24,7 @@ const Workouts = () => {
       image: fullbodyImage,
     },
     {
+      id: "hiit-intenso",
       title: "HIIT Intenso",
       duration: "30 min",
       level: "Avançado",
@@ -34,6 +34,7 @@ const Workouts = () => {
       image: hiitImage,
     },
     {
+      id: "hipertrofia-superiores",
       title: "Hipertrofia Membros Superiores",
       duration: "60 min",
       level: "Intermediário",
@@ -43,6 +44,7 @@ const Workouts = () => {
       image: upperImage,
     },
     {
+      id: "core-abdomen",
       title: "Core & Abdômen",
       duration: "30 min",
       level: "Todos",
@@ -52,6 +54,7 @@ const Workouts = () => {
       image: coreImage,
     },
     {
+      id: "treino-pernas",
       title: "Treino de Pernas",
       duration: "55 min",
       level: "Intermediário",
@@ -61,6 +64,7 @@ const Workouts = () => {
       image: legsImage,
     },
     {
+      id: "mobilidade-alongamento",
       title: "Mobilidade & Alongamento",
       duration: "40 min",
       level: "Todos",
@@ -70,13 +74,6 @@ const Workouts = () => {
       image: mobilityImage,
     },
   ];
-
-  const handleStartWorkout = (workoutTitle: string) => {
-    toast({
-      title: "Treino Iniciado! 💪",
-      description: `Você começou: ${workoutTitle}. Boa sorte!`,
-    });
-  };
 
   const getLevelColor = (level: string) => {
     switch (level) {
@@ -159,11 +156,13 @@ const Workouts = () => {
                 </div>
 
                 <Button 
+                  asChild
                   className="w-full gradient-primary shadow-primary"
-                  onClick={() => handleStartWorkout(workout.title)}
                 >
-                  <TrendingUp className="h-4 w-4 mr-2" />
-                  Começar Treino
+                  <Link to={`/treinos/${workout.id}`}>
+                    <TrendingUp className="h-4 w-4 mr-2" />
+                    Começar Treino
+                  </Link>
                 </Button>
               </CardContent>
             </Card>

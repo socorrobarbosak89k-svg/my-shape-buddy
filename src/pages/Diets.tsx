@@ -1,8 +1,8 @@
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Apple, Clock, TrendingUp, Leaf } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 import healthyFoodImage from "@/assets/healthy-food.jpg";
 import mediterraneanImage from "@/assets/diet-mediterranean.jpg";
 import lowcarbImage from "@/assets/diet-lowcarb.jpg";
@@ -12,10 +12,9 @@ import fastingImage from "@/assets/diet-fasting.jpg";
 import flexibleImage from "@/assets/diet-flexible.jpg";
 
 const Diets = () => {
-  const { toast } = useToast();
-  
   const diets = [
     {
+      id: "dieta-balanceada",
       title: "Dieta Balanceada",
       type: "Equilibrada",
       calories: "1800 kcal/dia",
@@ -24,6 +23,7 @@ const Diets = () => {
       image: flexibleImage,
     },
     {
+      id: "low-carb",
       title: "Low Carb",
       type: "Emagrecimento",
       calories: "1500 kcal/dia",
@@ -32,6 +32,7 @@ const Diets = () => {
       image: lowcarbImage,
     },
     {
+      id: "mediterranea",
       title: "Dieta Mediterrânea",
       type: "Saudável",
       calories: "2000 kcal/dia",
@@ -40,6 +41,7 @@ const Diets = () => {
       image: mediterraneanImage,
     },
     {
+      id: "proteica",
       title: "Dieta Proteica",
       type: "Hipertrofia",
       calories: "2200 kcal/dia",
@@ -48,6 +50,7 @@ const Diets = () => {
       image: proteinImage,
     },
     {
+      id: "vegetariana",
       title: "Vegetariana",
       type: "Sustentável",
       calories: "1800 kcal/dia",
@@ -56,6 +59,7 @@ const Diets = () => {
       image: veganImage,
     },
     {
+      id: "flexivel",
       title: "Flexível (IIFYM)",
       type: "Flexível",
       calories: "Variável",
@@ -64,13 +68,6 @@ const Diets = () => {
       image: fastingImage,
     },
   ];
-
-  const handleViewPlan = (dietTitle: string) => {
-    toast({
-      title: "Plano de Dieta! 🥗",
-      description: `Você selecionou: ${dietTitle}. Em breve você terá acesso ao plano completo!`,
-    });
-  };
 
   const getTypeColor = (type: string) => {
     switch (type) {
@@ -149,11 +146,13 @@ const Diets = () => {
                 </div>
 
                 <Button 
+                  asChild
                   className="w-full gradient-primary shadow-primary"
-                  onClick={() => handleViewPlan(diet.title)}
                 >
-                  <Leaf className="h-4 w-4 mr-2" />
-                  Ver Plano Completo
+                  <Link to={`/dietas/${diet.id}`}>
+                    <Leaf className="h-4 w-4 mr-2" />
+                    Ver Plano Completo
+                  </Link>
                 </Button>
               </CardContent>
             </Card>

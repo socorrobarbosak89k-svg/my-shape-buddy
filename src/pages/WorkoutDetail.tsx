@@ -2,13 +2,13 @@ import { useParams, Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Clock, Zap, TrendingUp, CheckCircle2 } from "lucide-react";
-import fullbodyImage from "@/assets/workout-fullbody.jpg";
-import hiitImage from "@/assets/workout-hiit.jpg";
-import upperImage from "@/assets/workout-upper.jpg";
-import coreImage from "@/assets/workout-core.jpg";
-import legsImage from "@/assets/workout-legs.jpg";
-import mobilityImage from "@/assets/workout-mobility.jpg";
+import { ArrowLeft, Clock, Zap, TrendingUp, CheckCircle2, Play } from "lucide-react";
+import walkingImage from "@/assets/workout-woman-walking.jpg";
+import strengthImage from "@/assets/workout-woman-strength.jpg";
+import aquaticImage from "@/assets/workout-woman-aquatic.jpg";
+import stretchingImage from "@/assets/workout-woman-stretching.jpg";
+import circuitImage from "@/assets/workout-woman-circuit.jpg";
+import yogaImage from "@/assets/workout-woman-yoga.jpg";
 
 const WorkoutDetail = () => {
   const { id } = useParams();
@@ -21,7 +21,8 @@ const WorkoutDetail = () => {
       level: "Iniciante",
       calories: "150-200 kcal",
       description: "Perfeito para começar sua jornada de perda de peso com segurança",
-      image: fullbodyImage,
+      image: walkingImage,
+      videoUrl: "https://www.youtube.com/embed/0q4fkFMIhow",
       exercises: [
         { name: "Caminhada moderada", sets: "15 min contínuos", rest: "-", tips: "Mantenha um ritmo confortável onde você consegue conversar" },
         { name: "Elevação de joelhos (marchar)", sets: "2x30s", rest: "30s", tips: "Eleve os joelhos de forma controlada, use apoio se necessário" },
@@ -47,7 +48,8 @@ const WorkoutDetail = () => {
       level: "Iniciante",
       calories: "180-230 kcal",
       description: "Construa força muscular progressivamente com exercícios adaptados",
-      image: hiitImage,
+      image: strengthImage,
+      videoUrl: "https://www.youtube.com/embed/j64BBgBGNIU",
       exercises: [
         { name: "Agachamento na cadeira", sets: "3x10", rest: "60s", tips: "Sente e levante usando uma cadeira como apoio" },
         { name: "Flexão na parede", sets: "3x12", rest: "45s", tips: "Mantenha corpo reto, empurre a parede suavemente" },
@@ -73,7 +75,8 @@ const WorkoutDetail = () => {
       level: "Iniciante",
       calories: "250-300 kcal",
       description: "Exercícios na água reduzem impacto nas articulações",
-      image: upperImage,
+      image: aquaticImage,
+      videoUrl: "https://www.youtube.com/embed/3oGN53cWE8Q",
       exercises: [
         { name: "Caminhada na água", sets: "10 min contínuos", rest: "-", tips: "Caminhe na água na altura da cintura ou peito" },
         { name: "Chutes frontais na água", sets: "3x15 cada perna", rest: "30s", tips: "Chute para frente controladamente" },
@@ -99,7 +102,8 @@ const WorkoutDetail = () => {
       level: "Iniciante",
       calories: "80-120 kcal",
       description: "Melhore flexibilidade e reduza dores nas articulações",
-      image: coreImage,
+      image: stretchingImage,
+      videoUrl: "https://www.youtube.com/embed/g_tea8ZNk5A",
       exercises: [
         { name: "Alongamento de pescoço", sets: "4x15s", rest: "10s", tips: "Incline suavemente para os lados e frente" },
         { name: "Rotação de ombros", sets: "3x10 cada direção", rest: "15s", tips: "Faça círculos amplos e suaves" },
@@ -125,7 +129,8 @@ const WorkoutDetail = () => {
       level: "Intermediário",
       calories: "220-280 kcal",
       description: "Exercícios funcionais adaptados para ganho progressivo",
-      image: legsImage,
+      image: circuitImage,
+      videoUrl: "https://www.youtube.com/embed/ml6cT4AZdqI",
       exercises: [
         { name: "Caminhada rápida", sets: "5 min contínuos", rest: "-", tips: "Aumente o ritmo gradualmente" },
         { name: "Agachamento com apoio", sets: "3x12", rest: "60s", tips: "Use cadeira ou barra como suporte" },
@@ -151,7 +156,8 @@ const WorkoutDetail = () => {
       level: "Iniciante",
       calories: "120-170 kcal",
       description: "Posturas modificadas focando em bem-estar e equilíbrio",
-      image: mobilityImage,
+      image: yogaImage,
+      videoUrl: "https://www.youtube.com/embed/v7SN-d4qXx0",
       exercises: [
         { name: "Respiração consciente", sets: "5 min", rest: "-", tips: "Sente confortavelmente, foque apenas na respiração" },
         { name: "Postura da criança modificada", sets: "2x60s", rest: "30s", tips: "Ajoelhada, sente nos calcanhares e incline para frente" },
@@ -233,6 +239,30 @@ const WorkoutDetail = () => {
 
       {/* Workout Content */}
       <section className="container py-12 space-y-8">
+        {/* Video Tutorial */}
+        {workout.videoUrl && (
+          <Card className="gradient-card shadow-card overflow-hidden">
+            <CardHeader>
+              <CardTitle className="text-2xl flex items-center gap-2">
+                <Play className="h-6 w-6 text-primary" />
+                Vídeo Tutorial - Como Fazer os Exercícios
+              </CardTitle>
+              <CardDescription>Aprenda a execução correta dos movimentos</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-lg"
+                  src={workout.videoUrl}
+                  title={`Tutorial: ${workout.title}`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Warmup */}
         <Card className="gradient-card shadow-card">
           <CardHeader>

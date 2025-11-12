@@ -4,12 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dumbbell, Clock, TrendingUp, Zap } from "lucide-react";
 import workoutImage from "@/assets/workout-gym.jpg";
-import fullbodyImage from "@/assets/workout-fullbody.jpg";
-import hiitImage from "@/assets/workout-hiit.jpg";
-import upperImage from "@/assets/workout-upper.jpg";
-import coreImage from "@/assets/workout-core.jpg";
-import legsImage from "@/assets/workout-legs.jpg";
-import mobilityImage from "@/assets/workout-mobility.jpg";
+import walkingImage from "@/assets/workout-woman-walking.jpg";
+import strengthImage from "@/assets/workout-woman-strength.jpg";
+import aquaticImage from "@/assets/workout-woman-aquatic.jpg";
+import stretchingImage from "@/assets/workout-woman-stretching.jpg";
+import circuitImage from "@/assets/workout-woman-circuit.jpg";
+import yogaImage from "@/assets/workout-woman-yoga.jpg";
 
 const Workouts = () => {
   const workouts = [
@@ -21,7 +21,7 @@ const Workouts = () => {
       calories: "150-200 kcal",
       description: "Perfeito para começar sua jornada de perda de peso com segurança e conforto.",
       exercises: ["Caminhada moderada", "Elevação de joelhos", "Passos laterais", "Alongamento"],
-      image: fullbodyImage,
+      image: walkingImage,
     },
     {
       id: "forca-iniciantes",
@@ -31,7 +31,7 @@ const Workouts = () => {
       calories: "180-230 kcal",
       description: "Construa força muscular progressivamente com exercícios adaptados e seguros.",
       exercises: ["Agachamento na cadeira", "Flexão na parede", "Elevação de braços", "Prancha parede"],
-      image: hiitImage,
+      image: strengthImage,
     },
     {
       id: "exercicios-aquaticos",
@@ -41,7 +41,7 @@ const Workouts = () => {
       calories: "250-300 kcal",
       description: "Exercícios na água reduzem impacto nas articulações, ideal para perda de peso.",
       exercises: ["Caminhada aquática", "Chutes na água", "Círculos braços", "Alongamento aquático"],
-      image: upperImage,
+      image: aquaticImage,
     },
     {
       id: "alongamento-mobilidade",
@@ -51,7 +51,7 @@ const Workouts = () => {
       calories: "80-120 kcal",
       description: "Melhore flexibilidade e reduza dores nas articulações com exercícios suaves.",
       exercises: ["Alongamento pescoço", "Rotação ombros", "Alongamento quadril", "Relaxamento"],
-      image: coreImage,
+      image: stretchingImage,
     },
     {
       id: "circuito-adaptado",
@@ -61,7 +61,7 @@ const Workouts = () => {
       calories: "220-280 kcal",
       description: "Exercícios funcionais adaptados para ganho progressivo de condicionamento.",
       exercises: ["Caminhada rápida", "Agachamento apoio", "Step baixo", "Elevação pernas"],
-      image: legsImage,
+      image: circuitImage,
     },
     {
       id: "yoga-adaptada",
@@ -71,7 +71,7 @@ const Workouts = () => {
       calories: "120-170 kcal",
       description: "Posturas modificadas focando em bem-estar, equilíbrio e auto-aceitação.",
       exercises: ["Respiração consciente", "Postura criança", "Gato-vaca", "Meditação"],
-      image: mobilityImage,
+      image: yogaImage,
     },
   ];
 
@@ -111,18 +111,20 @@ const Workouts = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {workouts.map((workout, index) => (
             <Card key={index} className="gradient-card shadow-card hover:shadow-primary transition-smooth overflow-hidden">
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={workout.image} 
-                  alt={workout.title}
-                  className="w-full h-full object-cover transition-transform hover:scale-110 duration-500"
-                />
-                <div className="absolute top-2 right-2">
-                  <Badge className={getLevelColor(workout.level)}>
-                    {workout.level}
-                  </Badge>
+              <Link to={`/treinos/${workout.id}`}>
+                <div className="relative h-48 overflow-hidden cursor-pointer">
+                  <img 
+                    src={workout.image} 
+                    alt={workout.title}
+                    className="w-full h-full object-cover transition-transform hover:scale-110 duration-500"
+                  />
+                  <div className="absolute top-2 right-2">
+                    <Badge className={getLevelColor(workout.level)}>
+                      {workout.level}
+                    </Badge>
+                  </div>
                 </div>
-              </div>
+              </Link>
               <CardHeader>
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">

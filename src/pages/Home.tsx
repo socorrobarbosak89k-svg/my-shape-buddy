@@ -50,10 +50,10 @@ const Home = () => {
         <div className="container relative py-24 md:py-32">
           <div className="max-w-3xl mx-auto text-center space-y-8">
             <h1 className="text-4xl md:text-6xl font-extrabold text-white animate-in fade-in slide-in-from-bottom-4 duration-1000">
-              Em Busca do Shape Inexplicável
+              NutriIQ - Sua Jornada de Transformação
             </h1>
             <p className="text-xl md:text-2xl text-white/90 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
-              Revolucione sua jornada fitness com IA, treinos personalizados e suporte 24 horas
+              Treinos especializados para perda de peso, nutrição inteligente e suporte 24 horas
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
               <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 shadow-glow text-lg px-8">

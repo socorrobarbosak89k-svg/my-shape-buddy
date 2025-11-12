@@ -22,7 +22,7 @@ const Header = () => {
           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
             <Dumbbell className="h-6 w-6 text-primary-foreground" />
           </div>
-          <span className="font-bold text-xl hidden sm:inline-block">Shape Inexplicável</span>
+          <span className="font-bold text-xl hidden sm:inline-block">NutriIQ</span>
         </Link>
 
         {/* Desktop Navigation */}

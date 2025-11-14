@@ -57,7 +57,7 @@ const Home = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
               <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 shadow-glow text-lg px-8">
-                <Link to="/calculadora">Começar Agora - Grátis</Link>
+                <Link to="/calculadora">Começar Agora</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8">
                 <Link to="/treinos">Ver Como Funciona</Link>

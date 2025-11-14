@@ -7,34 +7,40 @@ import heroImage from "@/assets/hero-fitness.jpg";
 const Home = () => {
   const features = [
     {
-      icon: Camera,
-      title: "Cálculo de Calorias por Foto",
-      description: "Tire uma foto da sua comida e receba instantaneamente as informações nutricionais completas.",
-    },
-    {
       icon: Dumbbell,
       title: "Treinos Personalizados",
       description: "Planos de treino criados especialmente para seus objetivos e nível de condicionamento.",
+      link: "/treinos",
+    },
+    {
+      icon: Camera,
+      title: "Cálculo de Calorias por Foto",
+      description: "Tire uma foto da sua comida e receba instantaneamente as informações nutricionais completas.",
+      link: "/calculadora",
     },
     {
       icon: Heart,
       title: "Dietas Sob Medida",
       description: "Dietas personalizadas que se adaptam às suas preferências e restrições alimentares.",
+      link: "/dietas",
     },
     {
       icon: MessageSquare,
       title: "Suporte 24h por IA",
       description: "Tire suas dúvidas a qualquer hora com nosso assistente inteligente sempre disponível.",
+      link: "/suporte",
     },
     {
       icon: TrendingUp,
       title: "Acompanhamento de Progresso",
       description: "Monitore sua evolução com gráficos detalhados e conquiste suas metas.",
+      link: "/treinos",
     },
     {
       icon: Zap,
       title: "Resultados Rápidos",
       description: "Metodologia comprovada para alcançar o shape inexplicável em tempo recorde.",
+      link: "/calculadora",
     },
   ];
 
@@ -78,20 +84,21 @@ const Home = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
-            <Card 
-              key={index} 
-              className="gradient-card border-border hover:shadow-card transition-smooth hover:scale-105"
-            >
-              <CardHeader>
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mb-4">
-                  <feature.icon className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle>{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">{feature.description}</CardDescription>
-              </CardContent>
-            </Card>
+            <Link key={index} to={feature.link}>
+              <Card 
+                className="gradient-card border-border hover:shadow-card transition-smooth hover:scale-105 cursor-pointer h-full"
+              >
+                <CardHeader>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mb-4">
+                    <feature.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle>{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base">{feature.description}</CardDescription>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </section>

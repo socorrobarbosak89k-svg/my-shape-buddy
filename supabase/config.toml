@@ -2,3 +2,6 @@ project_id = "apkfwjftfexzecxkqgjr"
 
 [functions.chat]
 verify_jwt = false
+
+[functions.analyze-food]
+verify_jwt = false

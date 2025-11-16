@@ -7,8 +7,8 @@ const Header = () => {
 
   const navItems = [
     { path: "/", label: "Início" },
-    { path: "/calculadora", label: "Calculadora" },
     { path: "/treinos", label: "Treinos" },
+    { path: "/calculadora", label: "Calculadora" },
     { path: "/dietas", label: "Dietas" },
     { path: "/suporte", label: "Suporte" },
   ];

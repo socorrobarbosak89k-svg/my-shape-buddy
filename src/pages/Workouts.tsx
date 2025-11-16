@@ -22,6 +22,7 @@ const Workouts = () => {
       description: "Perfeito para começar sua jornada de perda de peso com segurança e conforto.",
       exercises: ["Caminhada moderada", "Elevação de joelhos", "Passos laterais", "Alongamento"],
       image: walkingImage,
+      videoUrl: "https://www.youtube.com/embed/KVg_uzdNdAo",
     },
     {
       id: "forca-iniciantes",
@@ -42,6 +43,7 @@ const Workouts = () => {
       description: "Exercícios na água reduzem impacto nas articulações, ideal para perda de peso.",
       exercises: ["Caminhada aquática", "Chutes na água", "Círculos braços", "Alongamento aquático"],
       image: aquaticImage,
+      videoUrl: "https://www.youtube.com/embed/xqvCmoLULNY",
     },
     {
       id: "alongamento-mobilidade",

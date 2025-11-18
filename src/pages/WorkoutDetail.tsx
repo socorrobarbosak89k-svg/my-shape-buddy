@@ -22,7 +22,7 @@ const WorkoutDetail = () => {
       calories: "150-200 kcal",
       description: "Perfeito para começar sua jornada de perda de peso com segurança",
       image: walkingImage,
-      videoUrl: "https://www.youtube.com/embed/0q4fkFMIhow",
+      videoUrl: "https://www.youtube.com/embed/KVg_uzdNdAo",
       exercises: [
         { name: "Caminhada moderada", sets: "15 min contínuos", rest: "-", tips: "Mantenha um ritmo confortável onde você consegue conversar" },
         { name: "Elevação de joelhos (marchar)", sets: "2x30s", rest: "30s", tips: "Eleve os joelhos de forma controlada, use apoio se necessário" },
@@ -76,7 +76,7 @@ const WorkoutDetail = () => {
       calories: "250-300 kcal",
       description: "Exercícios na água reduzem impacto nas articulações",
       image: aquaticImage,
-      videoUrl: "https://www.youtube.com/embed/3oGN53cWE8Q",
+      videoUrl: "https://www.youtube.com/embed/xqvCmoLULNY",
       exercises: [
         { name: "Caminhada na água", sets: "10 min contínuos", rest: "-", tips: "Caminhe na água na altura da cintura ou peito" },
         { name: "Chutes frontais na água", sets: "3x15 cada perna", rest: "30s", tips: "Chute para frente controladamente" },
